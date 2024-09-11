@@ -1,5 +1,27 @@
-const express = require("express");
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import express from "express";
+import morgan from "morgan";
 
+import connectToMongo from "./db/connectToMongo.js";
+import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js";
+
+dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.listen(5200, () => console.log(`Server is listing on PORT 5200`));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
+app.use(express.json());
+app.use(cookieParser());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
+
+app.listen(PORT, async () => {
+  await connectToMongo();
+  console.log(`Server is listing on PORT ${PORT}`);
+});
