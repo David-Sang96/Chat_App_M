@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 
 const protectRoute = async (req, res, next) => {
   try {
@@ -20,7 +20,7 @@ const protectRoute = async (req, res, next) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    req.userId = user._id;
+    req.user = user;
     next();
   } catch (error) {
     console.log("Error in protectRoute: ", error.message);
