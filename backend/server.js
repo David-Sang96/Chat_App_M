@@ -7,9 +7,10 @@ import connectToMongo from "./db/connectToMongo.js";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import userRoutes from "./routes/user.route.js";
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
-const app = express();
+
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === "development") {
@@ -23,7 +24,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-app.listen(PORT, async () => {
+server.listen(PORT, async () => {
   await connectToMongo();
   console.log(`Server is listing on PORT ${PORT}`);
 });
