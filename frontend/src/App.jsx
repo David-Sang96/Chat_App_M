@@ -1,8 +1,10 @@
+import { Outlet } from "react-router-dom";
+
 function App() {
   return (
-    <>
-      <h1 className="text-red-400 sm:text-lime-300 lg:text-red-400">Hello</h1>
-    </>
+    <div className="flex h-screen items-center justify-center p-4">
+      <Outlet />
+    </div>
   );
 }
 
