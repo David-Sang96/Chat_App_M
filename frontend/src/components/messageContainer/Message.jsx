@@ -24,7 +24,7 @@ const Message = ({ chatMessages }) => {
       <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass}`}>
         {chatMessages.message}
       </div>
-      <div className="chat-footer mt-1 flex items-center gap-1 text-xs opacity-50">
+      <div className="chat-footer mt-1 flex items-center gap-1 text-xs text-white opacity-50">
         {format(chatMessages.createdAt, "h:mm a")}
       </div>
     </div>
