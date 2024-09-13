@@ -6,7 +6,7 @@ const Conversations = () => {
   const { loading, conversations } = useGetConversations();
 
   return (
-    <div className="no-scrollbar flex flex-col overflow-auto py-2">
+    <div className="no-scrollbar flex flex-col overflow-y-auto md:py-2">
       {loading ? (
         <span className="loading loading-spinner mx-auto"></span>
       ) : null}

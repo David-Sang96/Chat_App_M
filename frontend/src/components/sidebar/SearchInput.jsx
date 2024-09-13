@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { IoSearchSharp } from "react-icons/io5";
 import useGetConversations from "../../hooks/useGetConversations";
 import useConversation from "../../store/useConversation";
+import MobileLogoutButton from "./MobileLogoutButton";
 
 const SearchInput = () => {
   const [search, setSearch] = useState("");
@@ -21,22 +22,31 @@ const SearchInput = () => {
     if (conversation) {
       setSelectedConversation(conversation);
       setSearch("");
-    } else toast.error("No user found!");
+    } else {
+      setSearch("");
+      toast.error("No user found!");
+    }
   };
 
   return (
-    <form className="flex items-center gap-2" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Search..."
-        className="input input-bordered rounded-full"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <button type="submit" className="btn btn-circle bg-sky-500 text-white">
-        <IoSearchSharp className="size-6 outline-none" />
-      </button>
-    </form>
+    <div className="flex items-center justify-between">
+      <form className="flex items-center md:gap-2" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search..."
+          className="input-sm input-bordered rounded-full md:input-md max-md:text-sm"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="btn-circle btn-sm bg-sky-500 text-white md:btn-md"
+        >
+          <IoSearchSharp className="mx-auto size-4 outline-none md:size-6" />
+        </button>
+      </form>
+      <MobileLogoutButton />
+    </div>
   );
 };
 

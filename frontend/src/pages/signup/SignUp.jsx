@@ -24,9 +24,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="mx-auto flex min-w-96 flex-col items-center justify-center">
+    <div className="mx-auto flex min-w-96 flex-col items-center justify-center max-md:p-4">
       <div className="w-full rounded-lg bg-gray-400 bg-opacity-0 bg-clip-padding p-6 shadow-md backdrop-blur-lg backdrop-filter">
-        <h1 className="text-center text-3xl font-semibold text-gray-300">
+        <h1 className="text-center text-2xl font-semibold text-gray-300 md:text-3xl">
           Sign Up
           <span className="text-blue-500"> TalkNest</span>
         </h1>

@@ -18,7 +18,7 @@ const Messages = () => {
   }, [messages]);
 
   return (
-    <div className="no-scrollbar flex-1 overflow-auto px-4">
+    <div className="no-scrollbar flex-1 overflow-y-auto px-1 max-md:h-[400px] md:px-4">
       {!loading &&
         messages.length > 0 &&
         messages.map((message) => (

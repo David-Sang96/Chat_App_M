@@ -14,7 +14,7 @@ const MessageInput = () => {
   };
 
   return (
-    <form className="relative my-3 px-4" onSubmit={handleSubmit}>
+    <form className="relative my-3 px-1 md:px-4" onSubmit={handleSubmit}>
       <input
         type="text"
         className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white"
@@ -24,7 +24,7 @@ const MessageInput = () => {
       />
       <button
         type="submit"
-        className="absolute inset-y-0 end-7"
+        className="absolute inset-y-0 end-4 md:end-7"
         disabled={loading}
       >
         {loading ? (
