@@ -9,13 +9,22 @@ export const SocketContext = createContext();
 
 export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
-  const [onlineUser, setOnlineUser] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const { authUser } = useAuthContext();
 
   useEffect(() => {
     if (authUser) {
-      const socket = io("http://localhost:5200");
+      const socket = io("http://localhost:5200", {
+        query: {
+          userId: authUser._id,
+        },
+      });
       setSocket(socket);
+
+      // socket.on() is used to listen to the events,can be use in client and server
+      socket.on("getOnlineUsers", (users) => {
+        setOnlineUsers(users);
+      });
 
       return () => socket.close();
     } else {
@@ -24,9 +33,13 @@ export const SocketContextProvider = ({ children }) => {
         setSocket(null);
       }
     }
-  }, [authUser, socket]);
+  }, [authUser]);
 
-  return <SocketContext.Provider value={{socket,onlineUser}}>{children}</SocketContext.Provider>;
+  return (
+    <SocketContext.Provider value={{ socket, onlineUsers }}>
+      {children}
+    </SocketContext.Provider>
+  );
 };
 
 export const useSocketContext = () => {
