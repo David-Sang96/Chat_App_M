@@ -15,7 +15,7 @@ const MessageContainer = () => {
   }, [setSelectedConversation]);
 
   return (
-    <div className="flex flex-col max-md:h-[480px] md:min-w-[450px]">
+    <div className="flex flex-1 flex-col overflow-y-auto md:min-w-[450px]">
       {!selectedConversation ? (
         <div className="flex h-full w-full items-center justify-center">
           <div className="flex flex-col items-center gap-2 px-4 text-center font-semibold text-gray-200 sm:text-lg md:text-xl">
