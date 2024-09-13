@@ -1,7 +1,9 @@
+import axios from "axios";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import express from "express";
 import morgan from "morgan";
+import schedule from "node-schedule";
 import path from "path";
 
 import connectToMongo from "./db/connectToMongo.js";
@@ -30,6 +32,16 @@ app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
+
+// Set up a scheduled task using node-schedule
+schedule.scheduleJob("15 * * * *", async () => {
+  try {
+    await axios.get("https://your-service-url.com/keep-alive");
+    console.log("Keep-alive request sent");
+  } catch (error) {
+    console.error("Error sending keep-alive request:", error.message);
+  }
 });
 
 server.listen(PORT, async () => {
