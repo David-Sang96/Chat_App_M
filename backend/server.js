@@ -35,9 +35,9 @@ app.get("*", (req, res) => {
 });
 
 // Set up a scheduled task using node-schedule
-schedule.scheduleJob("15 * * * *", async () => {
+schedule.scheduleJob("*/15 * * * *", async () => {
   try {
-    await axios.get("https://your-service-url.com/keep-alive");
+    await axios.get("https://chat-app-c0yf.onrender.com");
     console.log("Keep-alive request sent");
   } catch (error) {
     console.error("Error sending keep-alive request:", error.message);
